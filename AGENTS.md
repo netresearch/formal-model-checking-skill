@@ -36,5 +36,7 @@ Default tests use the standard library and make no model or grader calls.
 - A valid counterexample may finish a design review.
 - Preserve the assignment's implementation and external-action scope.
 - The skill directory is the portable payload; its references travel with it.
+- Call reusable Netresearch workflows at `@main`, as required by organization
+  policy; keep third-party actions pinned to full commit hashes.
 - Version changes start in `plugin.json`; regenerate the Claude manifest.
 - Code is MIT; content is CC-BY-SA-4.0, attributed to Netresearch DTT GmbH.

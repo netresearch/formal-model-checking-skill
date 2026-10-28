@@ -1,0 +1,6 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: Netresearch DTT GmbH
+interface:
+  display_name: "Formal Model Checking"
+  short_description: "Check concurrency and recovery claims with state models"
+  default_prompt: "Use $formal-model-checking to examine this invariant and report its bounds, counterexamples and implementation evidence."

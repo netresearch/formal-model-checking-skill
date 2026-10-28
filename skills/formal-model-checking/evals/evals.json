@@ -1,0 +1,130 @@
+{
+  "skill_name": "formal-model-checking",
+  "evals": [
+    {
+      "id": 1,
+      "eval_name": "bundled-audit-model-versus-runtime",
+      "prompt": "The settings service in skills/formal-model-checking/evals/fixtures/formal-model-checking reports a green model check, but a worker died during a save. Assess the promise that every saved version is audited. Leave reproducible evidence, and distinguish the design result from what the Python implementation establishes.",
+      "expected_output": "Executes the bundled model and actual SQLite regression, identifies the hidden persistence boundary and historical gap, and reports a bounded result with honest implementation limits.",
+      "files": [
+        "skills/formal-model-checking/evals/fixtures/formal-model-checking"
+      ],
+      "expectations": [
+        "Runs the supplied checker and examines its bundled success action against the separately committed version and audit inserts, rather than trusting the green result.",
+        "Checks every retained committed version, including A after a later audited B makes the latest value look safe.",
+        "Uses an intended-invariant counterexample and reachable success/failure evidence for a positive model claim, and does not count syntax errors or bootstrap failures as those controls.",
+        "Separates model evidence from the real process-loss regression and does not claim formal verification or equivalence of the Python implementation."
+      ]
+    },
+    {
+      "id": 2,
+      "eval_name": "retry-duplicate-effect-boundary",
+      "prompt": "Model this retry protocol before we implement it: a worker applies debit(request_id), then acknowledges the message. Lost acknowledgements cause the same message to be retried. The sketch treats apply-and-ack as one atomic step. We need at most one debit per request ID.",
+      "expected_output": "Splits the effect and acknowledgement boundaries, models loss/retry and request identity, and checks the at-most-once effect invariant without imposing a particular storage design.",
+      "files": [],
+      "expectations": [
+        "Keeps the request identity and already applied effects observable so a retry can expose a duplicate debit.",
+        "Does not assume apply-and-ack is atomic without a real boundary, and permits loss between the two steps.",
+        "Reports a concrete intended-property violation if the unsafe protocol permits two debits, or a completed bounded positive result with validated controls if it does not; does not invent unbounded correctness.",
+        "Treats this as a design assignment and does not require application edits, a database, global lock or outbox merely to complete the analysis."
+      ]
+    },
+    {
+      "id": 3,
+      "eval_name": "lease-mutual-exclusion-vacuity",
+      "prompt": "Our lease model has two workers and proves they are never owners at the same time. The only reachable states have both workers idle, because acquire is disabled. Is the mutual-exclusion result useful enough for sign-off?",
+      "expected_output": "Identifies vacuous safety, requires reachable acquisition/release and relevant competing transitions, and keeps progress separate from mutual exclusion.",
+      "files": [],
+      "expectations": [
+        "Explains that no successful acquisition makes mutual exclusion vacuously true and does not establish the useful protocol behavior.",
+        "Requires explicit reachability evidence for work and relevant contention/failure paths, not only a zero checker exit.",
+        "Distinguishes the mutual-exclusion safety property from eventual acquisition or starvation freedom, which require separate liveness assumptions."
+      ]
+    },
+    {
+      "id": 4,
+      "eval_name": "crash-recovery-liveness-assumptions",
+      "prompt": "The finite model of our scheduler never loses a pending job, and every worker may crash at any time. Can we also say every accepted job eventually completes? The model has no fairness or recovery progress assumption.",
+      "expected_output": "Separates retained-state safety from eventual completion, identifies missing progress assumptions and does not silently add them as facts.",
+      "files": [],
+      "expectations": [
+        "Does not infer eventual completion from a no-loss safety invariant.",
+        "Explains that unlimited crashes or lack of recovery progress can prevent completion and makes fairness/environment assumptions explicit.",
+        "Reports the checked property and limits of the current model, and treats any proposed liveness strengthening as a separate claim."
+      ]
+    },
+    {
+      "id": 5,
+      "eval_name": "stale-snapshot-ordering",
+      "prompt": "Check a small state model of this configuration protocol: A reads version 1; B accepts version 2; A fails later and restores its saved version 1. The guarantee is that an accepted configuration cannot be replaced by an older snapshot.",
+      "expected_output": "Preserves version/acceptance history and competing actors, finds the stale-restore counterexample and reports it without hiding the schedule.",
+      "files": [],
+      "expectations": [
+        "Models competing reads, acceptance, failure and restoration as distinct consequential steps.",
+        "Finds or checks the version-2-then-version-1 counterexample against the intended monotonic acceptance property.",
+        "Does not remove the disputed ordering by making the entire request atomic or pruning it with a state constraint, and does not require an implementation repair to finish a bug-finding result."
+      ]
+    },
+    {
+      "id": 6,
+      "eval_name": "negative-control-error-classification",
+      "prompt": "The intended bounded model completed successfully. Its known-unsafe variant exits nonzero with a parser error, so our script marked the negative control as passing. Is this enough evidence that the invariant is being checked?",
+      "expected_output": "Rejects the parser failure as an invariant counterexample and requires a trace and exact intended-property violation.",
+      "files": [],
+      "expectations": [
+        "Rejects arbitrary nonzero exits, parser errors, timeouts and violations of unrelated properties as successful negative controls.",
+        "Requires an interpretable counterexample to the intended invariant from a valid unsafe model.",
+        "Keeps the intended positive result separate from the failed control rather than describing the whole verification as complete."
+      ]
+    },
+    {
+      "id": 7,
+      "eval_name": "database-and-listener-mapping",
+      "prompt": "Map a checked mutation/audit model to this design: the ACL relation table uses another database connection, the audit writer releases a savepoint and named lock before the outer commit, and a synchronous listener writes an audit row using the same connection as the mutation. The listener also calls a remote webhook.",
+      "expected_output": "Checks real connection and outer commit/lock ownership, includes related tables, and distinguishes shared-connection listener writes from external effects.",
+      "files": [],
+      "expectations": [
+        "Examines actual connection identity, outer transaction ownership, savepoint semantics, lock lifetime and the relation table rather than treating nearby calls as a single commit.",
+        "Does not treat a savepoint release as the outer commit.",
+        "Recognizes that synchronous listener database writes on the same transactional connection can participate, while its remote webhook does not share that commit.",
+        "Keeps post-commit notification separate from a recovery-backed eventual-delivery guarantee."
+      ]
+    },
+    {
+      "id": 8,
+      "eval_name": "finite-graph-versus-depth-bound",
+      "prompt": "We explored every reachable state of a finite two-worker model, including cycles. Another run stops after depth 20. Explain exactly what each result covers, and whether either verifies all production executions with arbitrary workers and values.",
+      "expected_output": "Distinguishes exhaustive exploration of the finite modeled graph from depth-limited exploration and refuses to extend either beyond the model assumptions.",
+      "files": [],
+      "expectations": [
+        "Explains that a complete finite-state graph covers modeled execution lengths including loops, while a depth bound covers only explored prefixes.",
+        "Records process/value bounds, assumptions and checker configuration/version and does not extend the result to arbitrary production actors or values.",
+        "Does not call a model result a source/binary equivalence or whole-application proof."
+      ]
+    },
+    {
+      "id": 9,
+      "eval_name": "design-only-counterexample-is-complete",
+      "prompt": "Review the lease protocol design only. A real checker trace shows both workers own the lease at once. Explain the defect and the limits of the finding. Do not change the application or CI.",
+      "expected_output": "Retains the valid mutual-exclusion counterexample as the requested outcome and reports implementation obligations without expanding scope.",
+      "files": [],
+      "expectations": [
+        "Accepts a trace violating the intended mutual-exclusion property as a useful negative result and a valid completion of this design assignment.",
+        "Explains the state transition and assumptions without weakening the invariant to obtain green output.",
+        "Leaves application behavior and CI unchanged, and clearly states that runtime conformance was not verified."
+      ]
+    },
+    {
+      "id": 10,
+      "eval_name": "process-loss-evidence-not-cleanup",
+      "prompt": "Our test worker printed a ready marker, then raised an exception, ran its finally block and exited 1. The test calls this proof that storage is safe against process termination. It checks no final database state. Can we rely on that claim?",
+      "expected_output": "Rejects normal exception/cleanup as process-loss evidence and calls for a verified boundary, injected termination and independent durable-state check when runtime verification is in scope.",
+      "files": [],
+      "expectations": [
+        "Does not equate an exception that runs finally, a bootstrap failure or any nonzero worker exit with injected abrupt process termination.",
+        "Requires confirmation of the relevant checkpoint before termination and verification of the termination mechanism and resulting durable state.",
+        "Does not substitute mocked begin/commit calls or output text for actual runtime state, and does not claim a formal refinement proof from such a test."
+      ]
+    }
+  ]
+}

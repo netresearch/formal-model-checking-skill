@@ -1,0 +1,23 @@
+{
+  "name": "netresearch/formal-model-checking-skill",
+  "description": "Bounded state models for concurrency, persistence and recovery claims, with validated counterexamples and separate implementation evidence.",
+  "type": "ai-agent-skill",
+  "license": "(MIT AND CC-BY-SA-4.0)",
+  "authors": [
+    {
+      "name": "Netresearch DTT GmbH",
+      "homepage": "https://www.netresearch.de",
+      "role": "Manufacturer"
+    }
+  ],
+  "require": {
+    "netresearch/composer-agent-skill-plugin": "*"
+  },
+  "extra": {
+    "ai-agent-skill": "skills/formal-model-checking/SKILL.md"
+  },
+  "support": {
+    "issues": "https://github.com/netresearch/formal-model-checking-skill/issues",
+    "source": "https://github.com/netresearch/formal-model-checking-skill"
+  }
+}

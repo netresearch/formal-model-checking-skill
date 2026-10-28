@@ -1,0 +1,20 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: Netresearch DTT GmbH
+name: Fixture Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  merge_group:
+
+permissions: {}
+
+jobs:
+  tests:
+    uses: netresearch/skill-repo-skill/.github/workflows/tests.yml@main
+    permissions:
+      contents: read
+    with:
+      python_glob: "tests/*.py"
+      require_tests: true

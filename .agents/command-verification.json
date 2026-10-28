@@ -1,0 +1,30 @@
+{
+  "verified_at": "2026-10-28T08:03:31Z",
+  "smoke_tested": false,
+  "commands": {
+    "skills/formal-model-checking/SKILL.md": {
+      "exists": false
+    },
+    "tests/test_model_checking_fixture.py": {
+      "exists": false
+    },
+    "plugin.json": {
+      "exists": false
+    },
+    "composer.json": {
+      "exists": false
+    },
+    ".claude-plugin/plugin.json": {
+      "exists": false
+    },
+    "skills/formal-model-checking/agents/openai.yaml": {
+      "exists": false
+    },
+    "skills/formal-model-checking/evals/": {
+      "exists": false
+    },
+    "skills/formal-model-checking/references/model-checking-workflow.md": {
+      "exists": false
+    }
+  }
+}

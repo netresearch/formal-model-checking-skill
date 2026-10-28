@@ -1,0 +1,8 @@
+{
+  "repo_public_status": "Met",
+  "repo_public_justification": "The public repository is available at https://github.com/netresearch/formal-model-checking-skill .",
+  "repo_track_status": "Met",
+  "repo_track_justification": "Git records the public source history at https://github.com/netresearch/formal-model-checking-skill/commits/main/ .",
+  "repo_distributed_status": "Met",
+  "repo_distributed_justification": "The project uses distributed Git version control at https://github.com/netresearch/formal-model-checking-skill ."
+}

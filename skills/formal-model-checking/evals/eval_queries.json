@@ -1,0 +1,34 @@
+[
+  {
+    "query": "Model our secret write and audit trail to check whether a crashed worker or two competing requests can leave an unlogged change.",
+    "should_trigger": true
+  },
+  {
+    "query": "Explore a payment retry protocol with a finite state model and find a trace where one request is applied twice.",
+    "should_trigger": true
+  },
+  {
+    "query": "TLC says our lease design is safe. Check for vacuity and whether both workers can actually acquire and release their leases.",
+    "should_trigger": true
+  },
+  {
+    "query": "Create a small state-machine model for crash recovery of a job scheduler, including what can happen around acknowledgement.",
+    "should_trigger": true
+  },
+  {
+    "query": "Given this TLA+ counterexample, explain which invariant fails and whether it maps to the implementation.",
+    "should_trigger": true
+  },
+  {
+    "query": "Add unit tests for the rounding helper; write the failing case before changing it.",
+    "should_trigger": false
+  },
+  {
+    "query": "The nightly build started failing with ModuleNotFoundError. Find what changed and fix the cause.",
+    "should_trigger": false
+  },
+  {
+    "query": "Can you review the changes another model just wrote for me?",
+    "should_trigger": false
+  }
+]

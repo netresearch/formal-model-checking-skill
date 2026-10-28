@@ -50,7 +50,7 @@ project's testing workflow. A design review can finish with a counterexample.
 - A precise property, model, configuration and explicit bounds and assumptions.
 - A completed search or an interpretable execution violating the property.
 - Valid negative controls and reachability evidence supporting positive claims.
-- A model-to-code mapping and separately reported runtime evidence.
+- A model-to-code mapping when code exists; runtime evidence when implementation verification is requested.
 - Excluded paths and incomplete checks.
 
 ## Context requirements

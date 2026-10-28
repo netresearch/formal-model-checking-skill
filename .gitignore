@@ -6,3 +6,4 @@ __pycache__/
 dist/
 node_modules/
 *.tmp
+.agents/command-verification.json

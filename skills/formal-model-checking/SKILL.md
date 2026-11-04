@@ -6,7 +6,7 @@ description: "Use when checking finite-state specifications of concurrency, pers
 license: "(MIT AND CC-BY-SA-4.0). See LICENSE-MIT and LICENSE-CC-BY-SA-4.0"
 metadata:
   author: Netresearch DTT GmbH
-  version: "0.1.0"
+  version: "1.0.0"
   repository: https://github.com/netresearch/formal-model-checking-skill
 ---
 

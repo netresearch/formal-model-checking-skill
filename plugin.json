@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "formal-model-checking",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Bounded state models for concurrency, persistence and recovery claims, with validated counterexamples and separate implementation evidence.",
   "author": {
     "name": "Netresearch DTT GmbH",
